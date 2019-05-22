@@ -1,14 +1,15 @@
 <template>
-    <my-page title="条形码生成工具">
+    <my-page title="条形码生成工具" :page="page">
         <div id="app" class="row">
-
             <div class="col-sm-12">
                 <div id="generator">
-
-                    <div id="submit">
+                    <div class="common-container container">
+                        <div id="submit">
+                        </div>
+                        <div id="barcodeTarget" class="barcodeTarget"></div>
+                        <canvas id="canvasTarget" width="320" height="320"></canvas>
                     </div>
-                    <div id="barcodeTarget" class="barcodeTarget"></div>
-                    <canvas id="canvasTarget" width="320" height="320"></canvas>
+
 
                     <div class="setting-box">
                         <ui-tabs class="tab" :value="activeTab" @change="handleTabChange">
@@ -154,7 +155,25 @@
                         name: 'datamatrix',
                         text: 'datamatrix'
                     },
-                ]
+                ],
+                page: {
+                    menu: [
+                        // {
+                        //     type: 'icon',
+                        //     icon: 'search',
+                        //     href: 'https://search.yunser.com?utm_source=edu',
+                        //     target: '_blank',
+                        //     title: '搜索'
+                        // },
+                        {
+                            type: 'icon',
+                            icon: 'apps',
+                            href: 'https://app.yunser.com?utm_source=barcode',
+                            target: '_blank',
+                            title: '应用'
+                        }
+                    ]
+                }
             }
         },
         mounted() {
@@ -260,9 +279,12 @@
     }
 </style>
 <style lang="scss" scoped>
+    .container {
+        max-width: 400px;
+    }
     .setting-box {
         position: absolute;
-        top: 0;
+        top: 64px;
         right: 0;
         width: 320px;
         bottom: 0;
